@@ -36,7 +36,9 @@ $personas = $cp->listar();
           <?php endforeach; ?>
         </select>
         <div class="form-text">¿No está el dueño? <a href="NuevaPersona.php">Cargá una persona</a>.</div>
-        <div class="invalid-feedback">Seleccioná un dueño.</div>
+        <div class="invalid-feedback">Seleccioná un dueño.</div> 
+
+         <div class="g-recaptcha" data-sitekey="6LdbfOkrAAAAAKHw6cmJ4I2SkZksZ_gzU264PEwu"></div>
       </div>
       <button type="submit" class="btn btn-primary">Guardar</button>
     </form>

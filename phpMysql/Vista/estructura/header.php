@@ -9,6 +9,13 @@
     <title><?php echo isset($pageTitle) ? htmlspecialchars($pageTitle) : 'Aplicación TP4'; ?></title>
     <link rel="stylesheet" href="/tp_librerias/phpMysql/Vista/css/bootstrap.min.css">
     <link rel="stylesheet" href="/tp_librerias/phpMysql/Vista/css/styles.css">
+
+  <!-- reCAPTCHA v2 Checkbox -->
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+
+</script>
+
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">

@@ -13,6 +13,8 @@ include __DIR__ . '/estructura/header.php';
             <input type="text" class="form-control" id="dni" name="dni" required maxlength="10" pattern="^[0-9]{7,10}$" placeholder="Solo números">
             <div class="invalid-feedback">Ingresá un DNI válido (7 a 10 dígitos).</div>
           </div>
+           <div class="g-recaptcha" data-sitekey="6LdbfOkrAAAAAKHw6cmJ4I2SkZksZ_gzU264PEwu"></div>
+           
           <button type="submit" class="btn btn-primary">Buscar</button>
         </form>
       </div>

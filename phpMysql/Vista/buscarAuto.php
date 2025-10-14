@@ -14,6 +14,8 @@ include __DIR__ . '/estructura/header.php';
         <div class="form-text">Ingresá la patente (5 a 10 caracteres, mayúsculas y números).</div>
         <div class="invalid-feedback">Ingresá una patente válida.</div>
       </div>
+
+       <div class="g-recaptcha" data-sitekey="6LdbfOkrAAAAAKHw6cmJ4I2SkZksZ_gzU264PEwu"></div>
       <button type="submit" class="btn btn-primary">Buscar</button>
     </form>
   </div>

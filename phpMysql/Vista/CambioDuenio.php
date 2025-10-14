@@ -17,6 +17,9 @@ include __DIR__ . '/estructura/header.php';
         <label for="dniDuenio" class="form-label">DNI nuevo dueño</label>
         <input type="text" class="form-control" id="dniDuenio" name="dniDuenio" required maxlength="10" pattern="^[0-9]{7,10}$" placeholder="Solo números">
         <div class="invalid-feedback">Ingresá un DNI válido (7 a 10 dígitos).</div>
+
+         <div class="g-recaptcha" data-sitekey="6LdbfOkrAAAAAKHw6cmJ4I2SkZksZ_gzU264PEwu"></div>
+         
       </div>
       <button type="submit" class="btn btn-primary">Actualizar</button>
     </form>

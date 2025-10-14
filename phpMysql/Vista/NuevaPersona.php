@@ -6,6 +6,9 @@ include __DIR__ . '/estructura/header.php';
 <h1 class="mb-4">Alta de Persona</h1>
 <div class="row">
   <div class="col-lg-6">
+    <!-- reCAPTCHA v3 - INICIO -->
+<input type="hidden" name="recaptcha_token" id="recaptchaToken">
+<!-- reCAPTCHA v3 - FIN -->
     <form class="needs-validation" novalidate action="accion/formAccion.php" method="post" id="formNuevaPersona">
       <input type="hidden" name="op" value="nuevaPersona">
       <div class="mb-3">
@@ -37,6 +40,13 @@ include __DIR__ . '/estructura/header.php';
         <label for="domicilio" class="form-label">Domicilio</label>
         <input type="text" class="form-control" id="domicilio" name="domicilio" required maxlength="200">
         <div class="invalid-feedback">Ingresá un domicilio.</div>
+
+      <div class="mb-3">
+    <!-- reCAPTCHA v2 -->
+    <div class="g-recaptcha" data-sitekey="6LdbfOkrAAAAAKHw6cmJ4I2SkZksZ_gzU264PEwu"></div>
+</div>
+
+
       </div>
       <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
