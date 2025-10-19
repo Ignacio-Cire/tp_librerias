@@ -21,19 +21,9 @@ include __DIR__ . '/estructura/header.php';
     </div>
     </main>
 
-    <script>
-    (function(){
-      'use strict';
-      const form = document.getElementById('formBuscarPersona');
-      form.addEventListener('submit', function (event) {
-        if (!form.checkValidity()) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
-        form.classList.add('was-validated');
-      }, false);
-      })();
-  </script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="js/formularios/buscarPersona.js"></script>
+
 <?php include __DIR__ . '/estructura/footer.php'; ?>
 
 

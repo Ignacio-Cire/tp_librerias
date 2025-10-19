@@ -2,6 +2,33 @@
 // Enrutador central de acciones de formularios
 // Espera un parámetro 'op' que indica la operación a ejecutar.
 
+
+function validarRecaptcha($respuestaUsuario) {
+    $claveSecreta = "6LeidekrAAAAAPmutvDWeYEWk_1MJkOHZOU";
+    $url = "https://www.google.com/recaptcha/api/siteverify";
+    
+    $datos = [
+        'secret' => $claveSecreta,
+        'response' => $respuestaUsuario
+    ];
+    
+    $opciones = [
+        'http' => [
+            'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+            'method' => 'POST',
+            'content' => http_build_query($datos)
+        ]
+    ];
+    
+    $contexto = stream_context_create($opciones);
+    $resultado = file_get_contents($url, false, $contexto);
+    $respuesta = json_decode($resultado);
+    
+    return $respuesta->success; // true o false
+}
+
+
+
 // Acepta tanto POST como GET, pero prioriza POST
 $op = isset($_POST['op']) ? trim($_POST['op']) : (isset($_GET['op']) ? trim($_GET['op']) : '');
 
@@ -10,6 +37,12 @@ switch ($op) {
     require __DIR__ . '/accionBuscarAuto.php';
     break;
   case 'nuevaPersona':
+    
+    // Validar reCAPTCHA primero
+    $recaptchaResponse = $_POST['g-recaptcha-response'] ?? '';
+    if (!validarRecaptcha($recaptchaResponse)) {
+        die("Error: Por favor, completa el reCAPTCHA");
+    }
     require __DIR__ . '/accionNuevaPersona.php';
     break;
   case 'nuevoAuto':
