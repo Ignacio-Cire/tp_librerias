@@ -58,6 +58,8 @@ include __DIR__ . '/estructura/header.php';
 
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <script src="js/formularios/nuevaPersona.js"></script>  
+<script src="js/validacionCaptcha/nuevaPersonaCaptcha.js"  ></script>
+
 
 <?php include __DIR__ . '/estructura/footer.php'; ?>
 

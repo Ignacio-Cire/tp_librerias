@@ -22,10 +22,10 @@ include __DIR__ . '/estructura/header.php';
 </div>
 
 
- script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <script src="js/formularios/buscarAuto.js"></script>  
 
-
+  
 
 <?php include __DIR__ . '/estructura/footer.php'; ?>
 

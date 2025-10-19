@@ -38,10 +38,11 @@ switch ($op) {
     break;
   case 'nuevaPersona':
     
-    // Validar reCAPTCHA primero
-    $recaptchaResponse = $_POST['g-recaptcha-response'] ?? '';
-    if (!validarRecaptcha($recaptchaResponse)) {
-        die("Error: Por favor, completa el reCAPTCHA");
+    // Validar reCAPTCHA
+    if (!validarRecaptcha($_POST['g-recaptcha-response'])) {
+        // Mostrar error y salir
+        echo "Error de seguridad";
+        exit;
     }
     require __DIR__ . '/accionNuevaPersona.php';
     break;
