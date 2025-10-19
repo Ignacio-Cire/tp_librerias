@@ -26,19 +26,10 @@ include __DIR__ . '/estructura/header.php';
   </div>
 </div>
 
-<script>
-(function(){
-  'use strict';
-  const form = document.getElementById('formCambioDuenio');
-  form.addEventListener('submit', function (event) {
-    if (!form.checkValidity()) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-    form.classList.add('was-validated');
-  }, false);
-})();
-</script>
+
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script src="js/formularios/cambioDuenio.js"></script>
+
 
 <?php include __DIR__ . '/estructura/footer.php'; ?>
 
