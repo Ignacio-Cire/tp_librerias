@@ -44,6 +44,9 @@ include __DIR__ . '/estructura/header.php';
       <div class="mb-3">
     <!-- reCAPTCHA v2 -->
     <div class="g-recaptcha" data-sitekey="6LdbfOkrAAAAAKHw6cmJ4I2SkZksZ_gzU264PEwu"></div>
+    <div class="invalid-feedback" id="recaptcha-error" style="display:none;">
+    ❌ Completar  reCAPTCHA."
+</div>
 </div>
 
 
