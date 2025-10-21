@@ -3,28 +3,21 @@
 // Espera un parámetro 'op' que indica la operación a ejecutar.
 
 
-function validarRecaptcha($respuestaUsuario) {
-    $claveSecreta = "6LeidekrAAAAAPmutvDWeYEWk_1MJkOHZOU";
-    $url = "https://www.google.com/recaptcha/api/siteverify";
-    
+function validarRecaptcha($token) {
+    $claveSecreta = "6LdbfOkrAAAAAI_jykoYr2XNDclhDaGNfF-v40-i"; 
+    $url = 'https://www.google.com/recaptcha/api/siteverify';
     $datos = [
-        'secret' => $claveSecreta,
-        'response' => $respuestaUsuario
+        'secret'   => $claveSecreta,
+        'response' => $token
     ];
-    
-    $opciones = [
-        'http' => [
-            'header' => "Content-type: application/x-www-form-urlencoded\r\n",
-            'method' => 'POST',
-            'content' => http_build_query($datos)
-        ]
-    ];
-    
-    $contexto = stream_context_create($opciones);
-    $resultado = file_get_contents($url, false, $contexto);
-    $respuesta = json_decode($resultado);
-    
-    return $respuesta->success; // true o false
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($datos));
+    $respuestaJson = curl_exec($ch);
+    curl_close($ch);
+    $respuesta = json_decode($respuestaJson);
+    return ($respuesta && $respuesta->success); // Versión corta de la función
 }
 
 
@@ -37,15 +30,24 @@ switch ($op) {
     require __DIR__ . '/accionBuscarAuto.php';
     break;
   case 'nuevaPersona':
-    
-    // Validar reCAPTCHA
-    if (!validarRecaptcha($_POST['g-recaptcha-response'])) {
-        // Mostrar error y salir
-        echo "Error de seguridad";
-        exit;
+
+
+// Primero verificamos que el usuario no sea un robot.
+    if (empty($_POST['g-recaptcha-response']) || !validarRecaptcha($_POST['g-recaptcha-response'])) {
+        
+        // Si falla el reCAPTCHA, mostramos una página de error y morimos.
+        // Es mejor incluir un header/footer aquí también para consistencia.
+        require_once __DIR__ . '/../estructura/header.php';
+        echo '<div class="alert alert-danger">Error de seguridad: El reCAPTCHA es inválido.</div>';
+        echo '<a class="btn btn-secondary" href="../NuevaPersona.php">Volver a intentar</a>';
+        require_once __DIR__ . '/../estructura/footer.php';
+        exit; // Detenemos todo.
     }
+
     require __DIR__ . '/accionNuevaPersona.php';
     break;
+
+
   case 'nuevoAuto':
     require __DIR__ . '/accionNuevoAuto.php';
     break;
